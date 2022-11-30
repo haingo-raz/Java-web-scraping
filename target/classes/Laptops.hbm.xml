@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="web.coursework.Laptops" table="laptops">
+        <id name="laptopId" type="int">
+            <column name="laptop_id"/>
+            <generator class="increment"/>
+        </id>
+        <property name="brandId" type="int">
+            <column name="brand_id"/>
+        </property>
+        <property name="laptopModel" type="java.lang.String">
+            <column name="laptop_model"/>
+        </property>
+        <property name="laptopDescription" type="java.lang.String">
+            <column name="laptop_description"/>
+        </property>
+        <property name="laptopLink" type="java.lang.String">
+            <column name="laptop_link"/>
+        </property>
+        <property name="laptopImgUrl" type="java.lang.String">
+            <column name="laptop_imgUrl"/>
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,36 @@
+package web.coursework;
+
+//represent the comparison table from the database
+
+public class Comparison {
+
+    private int comparisonId;
+    private int laptopId;
+    private int price;
+    private String sourceUrl;
+    private String laptopLink;
+    private String logoUrl;
+
+    public Comparison() {
+
+    }
+
+    //getters
+    public int getComparisonId() {
+        return comparisonId;
+    }
+    public int getLaptopId() { return laptopId; }
+    public int getPrice() { return price;}
+    public String getSourceUrl() { return sourceUrl;}
+    public String getLaptopLink() { return laptopLink;}
+    public String getLogoUrl () {return logoUrl;}
+
+    //Setters
+    public void setComparisonId(int comparisonId) { this.comparisonId= comparisonId;}
+    public void setLaptopId(int laptopId) { this.laptopId= laptopId;}
+    public void setPrice(int price) { this.price = price;}
+    public void setSourceUrl(String sourceUrl) { this.sourceUrl = sourceUrl;}
+    public void setLaptopLink(String laptopLink){ this.laptopLink = laptopLink; }
+    public void setLogoUrl(String logoUrl) { this.logoUrl = logoUrl;}
+
+}

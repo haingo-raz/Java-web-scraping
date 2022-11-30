@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="web.coursework.Comparison" table="comparison">
+        <id name="laptopId" type="int">
+            <column name="laptop_id"/>
+            <generator class="increment"/>
+        </id>
+        <property name="comparisonId" type="int">
+            <column name="comparison_id"/>
+        </property>
+        <property name="price" type="int">
+            <column name="price"/>
+        </property>
+        <property name="sourceUrl" type="java.lang.String">
+            <column name="source_url"/>
+        </property>
+        <property name="logoUrl" type="java.lang.String">
+            <column name="logo_url"/>
+        </property>
+    </class>
+</hibernate-mapping>
