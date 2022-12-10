@@ -22,17 +22,19 @@ public class HibernateXml {
 
     }
 
-    public ArrayList<Integer> addLaptop(String laptopModel, String laptopDescription, String laptopLink, String laptopImgUrl) {
+    //Adding a new Laptop in the database
+    public ArrayList<Integer> addLaptop(String laptopModel, String laptopBrand, String laptopDescription, String laptopLink, String laptopImgUrl) {
         //create a new session instance
         Session session = sessionFactory.getCurrentSession();
-
         session.beginTransaction();
+
+        //if (!checkLaptopDuplicate(""))
 
         Laptops laptop = new Laptops();
         //Comparison comparison = new Comparison();
 
         laptop.setLaptopId(laptop.getLaptopId());
-        laptop.setBrandId(1);
+        laptop.setLaptopBrand(laptop.getLaptopBrand());
         laptop.setLaptopModel(laptopModel);
         laptop.setLaptopDescription(laptopDescription);
         laptop.setLaptopLink(laptopLink);

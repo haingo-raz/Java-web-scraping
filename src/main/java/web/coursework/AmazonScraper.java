@@ -69,7 +69,7 @@ public class AmazonScraper extends Thread {
                         //Adding to database
                         ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
                         HibernateXml hibernate = (HibernateXml) context.getBean("hibernate");
-                        hibernate.addLaptop(laptopModel, laptopDescription.text(), productLink, laptopImg);
+                        hibernate.addLaptop(laptopModel, laptopBrand, laptopDescription.text(), productLink, laptopImg);
                         hibernate.shutDown();
                     }
                 } catch(Exception ex){

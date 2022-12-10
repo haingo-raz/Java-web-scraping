@@ -6,8 +6,8 @@
             <column name="laptop_id"/>
             <generator class="increment"/>
         </id>
-        <property name="brandId" type="int">
-            <column name="brand_id"/>
+        <property name="laptopBrand" type="java.lang.String">
+            <column name="laptop_brand"/>
         </property>
         <property name="laptopModel" type="java.lang.String">
             <column name="laptop_model"/>

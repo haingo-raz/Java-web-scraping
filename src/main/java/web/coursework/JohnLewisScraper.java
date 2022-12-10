@@ -71,7 +71,7 @@ public class JohnLewisScraper extends Thread{
                     //Adding to database
                     ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
                     HibernateXml hibernate = (HibernateXml) context.getBean("hibernate");
-                    hibernate.addLaptop(laptopModel, laptopDescription.text(), productLink, laptopImg);
+                    hibernate.addLaptop(laptopModel, laptopBrand.text(), laptopDescription.text(), productLink, laptopImg);
                     hibernate.shutDown();
 
                     //Output the data that we have downloaded
