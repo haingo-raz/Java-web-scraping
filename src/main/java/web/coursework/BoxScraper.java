@@ -56,6 +56,8 @@ public class BoxScraper extends Thread {
 
                         //Get the FINAL product price
                         Elements laptopPrice = prods.get(i).select("p.p-list-sell");
+                        //convert the price in numbers
+                        int finalPrice = Integer.parseInt(String.valueOf(laptopPrice));
 
                         //Get the laptop image url => good
                         Elements laptopImgUrl = prods.get(i).select("img.lazyimage");
@@ -77,7 +79,7 @@ public class BoxScraper extends Thread {
                         //Adding to database
                         ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
                         HibernateXml hibernate = (HibernateXml) context.getBean("hibernate");
-                        hibernate.addLaptop(laptopModel, laptopBrand, laptopDescription.text(), productLink, laptopImg);
+                        hibernate.addLaptop(laptopBrand, laptopModel, laptopDescription.text(), laptopImg, productLink, finalPrice);
                         hibernate.shutDown();
 
                     }

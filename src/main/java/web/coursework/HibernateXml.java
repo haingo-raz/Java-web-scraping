@@ -3,6 +3,8 @@ package web.coursework;
 //Hibernate imports
 import java.lang.module.Configuration;
 import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.boot.Metadata;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.boot.MetadataSources;
@@ -23,73 +25,148 @@ public class HibernateXml {
     }
 
     //Adding a new Laptop in the database
-    public ArrayList<Integer> addLaptop(String laptopModel, String laptopBrand, String laptopDescription, String laptopLink, String laptopImgUrl) {
+    public ArrayList<Integer> addLaptop(String laptopBrand, String laptopModel, String laptopDescription, String laptopImgUrl, String sourceUrl, int price) {
         //create a new session instance
         Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
 
-        //if (!checkLaptopDuplicate(""))
+        if (!checkLaptopDuplicates("laptop_brand", laptopBrand, "laptop_model", laptopModel)) {
 
-        Laptops laptop = new Laptops();
-        //Comparison comparison = new Comparison();
+            Laptops laptop = new Laptops();
+            Comparison comparison = new Comparison();
 
-        laptop.setLaptopId(laptop.getLaptopId());
-        laptop.setLaptopBrand(laptop.getLaptopBrand());
-        laptop.setLaptopModel(laptopModel);
-        laptop.setLaptopDescription(laptopDescription);
-        laptop.setLaptopLink(laptopLink);
-        laptop.setLaptopImgUrl(laptopImgUrl);
-        //Add to the database
-        session.save(laptop);
+            //Set the values
+            laptop.setLaptopBrand(laptop.getLaptopBrand());
+            laptop.setLaptopModel(laptopModel);
+            laptop.setLaptopDescription(laptopDescription);
+            laptop.setLaptopImgUrl(laptopImgUrl);
 
+            //Add laptop to the database
+            session.save(laptop);
 
-        //comparison.setLaptopId(laptop.getLaptopId());
-        //comparison.setPrice(price);
-        //comparison.setUrl(laptopLink);
-        //Add to database
-        //session.save(comparison);
+            // Populate comparison table
+            comparison.setLaptopId(laptop.getLaptopId());
+            comparison.setPrice(price);
+            comparison.setSourceUrl(sourceUrl);
+            //Add to database
+            session.save(comparison);
 
-        //Commit transaction to save to database
-        session.getTransaction().commit();
+            //Commit transaction to save to database
+            session.getTransaction().commit();
 
-        ArrayList<Integer> ids = new ArrayList<>();
-//
-          ids.add(laptop.getLaptopId());
-//        ids.add(comparison.getComparisonId());
+            ArrayList<Integer> ids = new ArrayList<>();
 
-        //close the session
-        session.close();
-        System.out.println("Laptop added to database with ID: " + laptop.getLaptopId() +
-                 "\nLaptop Model: " + laptopModel +
-                "\nLaptop Description: " + laptopDescription +
-                "\nLaptop Link: " + laptopLink +
-                "\nLaptop Image Url: " + laptopImgUrl );
-        return ids;
+            ids.add(laptop.getLaptopId());
+            ids.add(comparison.getComparisonId());
+
+            //close the session
+            session.close();
+            System.out.println("Laptop added to database with ID: " + laptop.getLaptopId() +
+                    "\nLaptop Brand: " + laptopBrand +
+                    "\nLaptop Model: " + laptopModel +
+                    "\nLaptop Description: " + laptopDescription +
+                    "\nLaptop Image Url: " + laptopImgUrl);
+            return ids;
+        } else if (checkLaptopDuplicates("laptop_description", laptopDescription, "laptop_imgUrl", laptopImgUrl)) {
+            session.close();
+            System.out.println("Item already in the database");
+            return new ArrayList<>();
+        } else {
+            Laptops existingLaptop = matchLaptop("laptopModel", laptopModel);
+            Comparison comparison = new Comparison();
+
+            //Add comparison to database
+            comparison.setLaptopId(existingLaptop.getLaptopId());
+            comparison.setPrice(price);
+            comparison.setSourceUrl(sourceUrl);
+
+            //Save
+            session.getTransaction().commit();
+            session.close();
+            System.out.println("New comparison added");
+            return new ArrayList<>();
+        }
     }
 
-    /*public boolean checkLaptopDuplicate(){
+    public boolean checkLaptopDuplicates(String column1, String data1, String column2, String data2) {
         //Set a new session factory
         Session session = sessionFactory.getCurrentSession();
 
-    }*/
+        List<Laptops> laptopList = session.createQuery("from laptops where " + column1 + " = '" + data1 + "' AND " + column2 + " = '" + data2 + "'").getResultList();
+        return laptopList.size() > 0;
+    }
 
 
-//    public boolean checkComparisonDuplicate(){
-//
-//    }
+    public boolean checkComparisonDuplicate(String column1, String data1){
+        //Set a new session factory
+        Session session = sessionFactory.getCurrentSession();
 
-//    public Laptop matchLaptop(){
-//
-//    }
+        List<Comparison> comparisonList = session.createQuery(" from comparison where "+ column1 + " = " + data1).getResultList();
+        return comparisonList.size() > 0;
+    }
 
-//    public void deleteLaptop(int id){
-//
-//    }
+    public Laptops matchLaptop(String column1, String data1){
+        //Set a new session factory
+        Session session = sessionFactory.getCurrentSession();
+        List<Laptops> laptopList = session.createQuery("from laptops where "+ column1 + " = " + data1).getResultList();
+        return laptopList.get(0);
+    }
 
-//    public void deleteComparison(int id){
-//        Comparison comparison;
-//
-//    }
+    public void deleteLaptop(int laptopId){
+    Laptops laptops;
+
+    //Create instance of Laptops class
+        try(Session session = sessionFactory.getCurrentSession()) {
+
+            //New instance of Laptop class
+            laptops = new Laptops();
+            laptops.setLaptopId(laptopId);
+
+            //Start transaction
+            session.beginTransaction();
+
+            //Search for a laptop in the database having the same id
+            Object persistentInstance = session.load(Laptops.class, laptopId);
+
+            //Delete in case of match
+            if (persistentInstance != null) {
+                session.delete(persistentInstance);
+            } else {
+                System.out.println("Laptop with id " + laptopId + " does not exist");
+            }
+            //save to database
+            session.getTransaction().commit();
+        }
+        System.out.println("Laptop delete with ID " + laptopId);
+        laptopDeletionCompleted = true;
+    }
+
+
+    public void deleteComparison(int comparisonId){
+        Comparison comparison;
+
+        try(Session session = sessionFactory.getCurrentSession()){
+            comparison = new Comparison();
+            comparison.setComparisonId(comparisonId);
+
+            //Start transaction
+            session.beginTransaction();
+
+            //Search for a laptop in the database having the same id
+            Object persistentInstance = session.load(Comparison.class, comparisonId);
+
+            //Delete in case of match
+            if (persistentInstance != null) {
+                session.delete(persistentInstance);
+            } else {
+                System.out.println("Comparison with id " + comparisonId + " does not exist");
+            }
+            //save to database
+            session.getTransaction().commit();
+        }
+        System.out.println("Laptop delete with ID " + comparisonId);
+        comparisonDeletionCompleted = true;
+    }
 
     public void setSessionFactory(SessionFactory sessionFactory){
         this.sessionFactory = sessionFactory;

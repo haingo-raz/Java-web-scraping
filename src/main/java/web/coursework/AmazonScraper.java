@@ -40,6 +40,8 @@ public class AmazonScraper extends Thread {
 
                         //Get the product price
                         Elements laptopPrice = prods.get(i).select("span.a-price-whole");
+                        //convert the price in numbers
+                        int finalPrice = Integer.parseInt(String.valueOf(laptopPrice));
 
                         //Get the laptop image url
                         Elements laptopImgUrl = prods.get(i).select("img.s-image");
@@ -56,7 +58,7 @@ public class AmazonScraper extends Thread {
                         String[] title = laptopDescription.text().split(" ");
 
                         //Amazon logo
-                        String logoUrl = "https://m.media-amazon.com/images/I/31hIyqA%2BktL.jpg";
+                        //String logoUrl = "https://m.media-amazon.com/images/I/31hIyqA%2BktL.jpg";
 
                         if (title.length > 4) {
                             laptopBrand = title[0];
@@ -69,7 +71,7 @@ public class AmazonScraper extends Thread {
                         //Adding to database
                         ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
                         HibernateXml hibernate = (HibernateXml) context.getBean("hibernate");
-                        hibernate.addLaptop(laptopModel, laptopBrand, laptopDescription.text(), productLink, laptopImg);
+                        hibernate.addLaptop(laptopBrand, laptopModel, laptopDescription.text(), laptopImg, productLink, finalPrice);
                         hibernate.shutDown();
                     }
                 } catch(Exception ex){

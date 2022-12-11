@@ -15,9 +15,6 @@
         <property name="laptopDescription" type="java.lang.String">
             <column name="laptop_description"/>
         </property>
-        <property name="laptopLink" type="java.lang.String">
-            <column name="laptop_link"/>
-        </property>
         <property name="laptopImgUrl" type="java.lang.String">
             <column name="laptop_imgUrl"/>
         </property>

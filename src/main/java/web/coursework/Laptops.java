@@ -5,7 +5,6 @@ public class Laptops {
     private String laptopBrand;
     private String laptopModel;
     private String laptopDescription;
-    private String laptopLink;
     private String laptopImgUrl;
 
     public Laptops(){
@@ -20,7 +19,6 @@ public class Laptops {
     public String getLaptopModel() { return laptopModel; }
 
     public String getLaptopDescription() { return laptopDescription;}
-    public String getLaptopLink() { return laptopLink;}
     public String getLaptopImgUrl () {return laptopImgUrl;}
 
 
@@ -29,7 +27,7 @@ public class Laptops {
     public void setLaptopBrand(String laptopBrand) { this.laptopBrand = laptopBrand;}
     public void setLaptopModel(String laptopModel) { this.laptopModel = laptopModel;}
     public void setLaptopDescription(String laptopDescription) { this.laptopDescription = laptopDescription;}
-    public void setLaptopLink(String laptopLink){ this.laptopLink = laptopLink; }
+    //public void setLaptopLink(String laptopLink){ this.laptopLink = laptopLink; }
     public void setLaptopImgUrl(String laptopImgUrl) { this.laptopImgUrl = laptopImgUrl;}
 
 
@@ -41,7 +39,6 @@ public class Laptops {
                 "\n Laptop name: " + laptopModel +
                 "\n Brand id: " + laptopBrand +
                 "\n Laptop description: " + laptopDescription +
-                "\n Laptop link: " + laptopLink +
                 "\n Image url: " + laptopImgUrl;
     }
 }
