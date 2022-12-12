@@ -1,7 +1,6 @@
 package web.coursework;
 
 import org.jsoup.Jsoup;
-import java.io.IOException;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -56,7 +55,9 @@ public class LaptopOutletScraper extends Thread{
 
                         //Get the final product price
                         Elements laptopPrice = prods.get(i).select("span.including_vat_price_box"); //price description
-                        //Elements laptopPrice = prods.get(i).select("span.price");
+                        //get the string value
+                        String finalPrice = laptopPrice.text();
+
 
                         //Get the laptop image url
                         Elements laptopImgUrl = prods.get(i).select("img.product-image-photo");
@@ -73,7 +74,7 @@ public class LaptopOutletScraper extends Thread{
                         //Adding to database
                         ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
                         HibernateXml hibernate = (HibernateXml) context.getBean("hibernate");
-                        hibernate.addLaptop(laptopModel, laptopBrand, laptopDescription.text(), productLink, laptopImg);
+                        hibernate.addLaptop(laptopBrand, laptopModel, laptopDescription.text(), laptopImg, productLink, finalPrice);
                         hibernate.shutDown();
 
                         //Output the data that we have downloaded

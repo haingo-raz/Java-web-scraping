@@ -57,7 +57,7 @@ public class BoxScraper extends Thread {
                         //Get the FINAL product price
                         Elements laptopPrice = prods.get(i).select("p.p-list-sell");
                         //convert the price in numbers
-                        int finalPrice = Integer.parseInt(String.valueOf(laptopPrice));
+                        String finalPrice = laptopPrice.text();
 
                         //Get the laptop image url => good
                         Elements laptopImgUrl = prods.get(i).select("img.lazyimage");
@@ -74,14 +74,13 @@ public class BoxScraper extends Thread {
                         String websiteLogo = "https://www.box.co.uk" + logoLink.attr("data-src");
 
                         //Box uk logo
-                        String logoUrl = "https://www.box.co.uk/Images/box-logo2-FP_2110111013.svg";
+                        //String logoUrl = "https://www.box.co.uk/Images/box-logo2-FP_2110111013.svg";
 
                         //Adding to database
                         ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
                         HibernateXml hibernate = (HibernateXml) context.getBean("hibernate");
                         hibernate.addLaptop(laptopBrand, laptopModel, laptopDescription.text(), laptopImg, productLink, finalPrice);
                         hibernate.shutDown();
-
                     }
                 } catch (Exception ex) {
                     ex.printStackTrace();

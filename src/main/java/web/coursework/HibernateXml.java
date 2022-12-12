@@ -25,12 +25,12 @@ public class HibernateXml {
     }
 
     //Adding a new Laptop in the database
-    public ArrayList<Integer> addLaptop(String laptopBrand, String laptopModel, String laptopDescription, String laptopImgUrl, String sourceUrl, int price) {
+    public ArrayList<Integer> addLaptop(String laptopBrand, String laptopModel, String laptopDescription, String laptopImgUrl, String sourceUrl, String price) {
         //create a new session instance
         Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
 
-        if (!checkLaptopDuplicates("laptop_brand", laptopBrand, "laptop_model", laptopModel)) {
+        if (!checkLaptopDuplicates("laptopBrand", laptopBrand, "laptopModel", laptopModel)) {
 
             Laptops laptop = new Laptops();
             Comparison comparison = new Comparison();
@@ -67,7 +67,7 @@ public class HibernateXml {
                     "\nLaptop Description: " + laptopDescription +
                     "\nLaptop Image Url: " + laptopImgUrl);
             return ids;
-        } else if (checkLaptopDuplicates("laptop_description", laptopDescription, "laptop_imgUrl", laptopImgUrl)) {
+        } else if (checkLaptopDuplicates("laptopDescription", laptopDescription, "laptopImgUrl", laptopImgUrl)) {
             session.close();
             System.out.println("Item already in the database");
             return new ArrayList<>();
@@ -92,7 +92,7 @@ public class HibernateXml {
         //Set a new session factory
         Session session = sessionFactory.getCurrentSession();
 
-        List<Laptops> laptopList = session.createQuery("from laptops where " + column1 + " = '" + data1 + "' AND " + column2 + " = '" + data2 + "'").getResultList();
+        List<Laptops> laptopList = session.createQuery("from Laptops where " + column1 + " = '" + data1 + "' AND " + column2 + " = '" + data2 + "'").getResultList();
         return laptopList.size() > 0;
     }
 
@@ -101,14 +101,14 @@ public class HibernateXml {
         //Set a new session factory
         Session session = sessionFactory.getCurrentSession();
 
-        List<Comparison> comparisonList = session.createQuery(" from comparison where "+ column1 + " = " + data1).getResultList();
+        List<Comparison> comparisonList = session.createQuery(" from Comparison where " + column1 + " = '" + data1+ "'").getResultList();
         return comparisonList.size() > 0;
     }
 
     public Laptops matchLaptop(String column1, String data1){
         //Set a new session factory
         Session session = sessionFactory.getCurrentSession();
-        List<Laptops> laptopList = session.createQuery("from laptops where "+ column1 + " = " + data1).getResultList();
+        List<Laptops> laptopList = session.createQuery("from Laptops where "+ column1 + " = " + data1).getResultList();
         return laptopList.get(0);
     }
 

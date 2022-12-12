@@ -41,7 +41,7 @@ public class AmazonScraper extends Thread {
                         //Get the product price
                         Elements laptopPrice = prods.get(i).select("span.a-price-whole");
                         //convert the price in numbers
-                        int finalPrice = Integer.parseInt(String.valueOf(laptopPrice));
+                        String finalPrice = laptopPrice.text();
 
                         //Get the laptop image url
                         Elements laptopImgUrl = prods.get(i).select("img.s-image");

@@ -58,6 +58,8 @@ public class QuzoScraper extends Thread{
 
                         //Get the FINAL product price
                         Elements laptopPrice = prods.get(i).select("span.fixedPrice");
+                        //get the string value
+                        String finalPrice = laptopPrice.text();
 
                         //Get the laptop image URL
                         Elements laptopImgUrl = prods.get(i).select("div.ProductImageMedium");
@@ -75,7 +77,7 @@ public class QuzoScraper extends Thread{
                         //Adding to database
                         ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
                         HibernateXml hibernate = (HibernateXml) context.getBean("hibernate");
-                        hibernate.addLaptop(laptopModel, laptopBrand, laptopDescription.text(), productLink, laptopImg);
+                        hibernate.addLaptop(laptopBrand, laptopModel, laptopDescription.text(), laptopImg, productLink, finalPrice);
                         hibernate.shutDown();
 
                         //Output the data that we have downloaded

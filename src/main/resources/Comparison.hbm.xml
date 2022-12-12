@@ -2,14 +2,14 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
     <class name="web.coursework.Comparison" table="comparison">
-        <id name="laptopId" type="int">
-            <column name="laptop_id"/>
+        <id name="comparisonId" type="int">
+            <column name="comparison_id"/>
             <generator class="increment"/>
         </id>
-        <property name="comparisonId" type="int">
-            <column name="comparison_id"/>
+        <property name="laptopId" type="int">
+            <column name="laptop_id"/>
         </property>
-        <property name="price" type="int">
+        <property name="price" type="java.lang.String">
             <column name="price"/>
         </property>
         <property name="sourceUrl" type="java.lang.String">

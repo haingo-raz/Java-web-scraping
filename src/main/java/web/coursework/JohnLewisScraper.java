@@ -55,6 +55,8 @@ public class JohnLewisScraper extends Thread{
 
                     //Get the final product price
                     Elements laptopPrice = prods.get(i).select("span.price_price__now__3B4yM");
+                    //convert the price in numbers
+                    String finalPrice = laptopPrice.text();
 
                     //Get the laptop image url
                     Elements laptopImgUrl = prods.get(i).select(".image_image__jhaxk");
@@ -71,16 +73,8 @@ public class JohnLewisScraper extends Thread{
                     //Adding to database
                     ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
                     HibernateXml hibernate = (HibernateXml) context.getBean("hibernate");
-                    hibernate.addLaptop(laptopModel, laptopBrand.text(), laptopDescription.text(), productLink, laptopImg);
+                    hibernate.addLaptop(laptopBrand.text(), laptopModel, laptopDescription.text(), laptopImg, productLink, finalPrice);
                     hibernate.shutDown();
-
-                    //Output the data that we have downloaded
-//            System.out.println("John Lewis BRAND: " + laptopBrand.text() +
-//                    "\nMODEL: " + laptopModel +
-//                    "\nPRICE: " + laptopPrice.text()+
-//                    "\nImage url: " + laptopImg+
-//                    "\nProduct details url: " + productLink
-//            );
                 }
             }
             catch(Exception ex){
