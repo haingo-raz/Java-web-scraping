@@ -25,7 +25,7 @@ public class AmazonScraper extends Thread {
             System.out.println("AmazonScraper thread is scraping data.");
 
             //Scrape data from Amazon
-            for (int pageNumber = 1; pageNumber < 50; pageNumber++) {
+            for (int pageNumber = 1; pageNumber < 10; pageNumber++) {
                 try{
                     Document doc = Jsoup.connect("https://www.amazon.com/s?k=laptop&page=" + pageNumber)
                             .userAgent("A student experiencing web scraping for a university coursework.")

@@ -6,17 +6,14 @@
             <column name="laptop_id"/>
             <generator class="increment"/>
         </id>
-        <property name="brandId" type="int">
-            <column name="brand_id"/>
+        <property name="laptopBrand" type="java.lang.String">
+            <column name="laptop_brand"/>
         </property>
         <property name="laptopModel" type="java.lang.String">
             <column name="laptop_model"/>
         </property>
         <property name="laptopDescription" type="java.lang.String">
             <column name="laptop_description"/>
-        </property>
-        <property name="laptopLink" type="java.lang.String">
-            <column name="laptop_link"/>
         </property>
         <property name="laptopImgUrl" type="java.lang.String">
             <column name="laptop_imgUrl"/>
