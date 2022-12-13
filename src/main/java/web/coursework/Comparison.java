@@ -8,7 +8,6 @@ public class Comparison {
     private int laptopId;
     private String price;
     private String sourceUrl;
-//    private String laptopLink;
     private String logoUrl;
 
     public Comparison() {
@@ -22,7 +21,6 @@ public class Comparison {
     public int getLaptopId() { return laptopId; }
     public String getPrice() { return price;}
     public String getSourceUrl() { return sourceUrl;}
-    //public String getLaptopLink() { return laptopLink;}
     public String getLogoUrl () {return logoUrl;}
 
     //Setters
@@ -30,7 +28,6 @@ public class Comparison {
     public void setLaptopId(int laptopId) { this.laptopId= laptopId;}
     public void setPrice(String price) { this.price = price;}
     public void setSourceUrl(String sourceUrl) { this.sourceUrl = sourceUrl;}
-    //public void setLaptopLink(String laptopLink){ this.laptopLink = laptopLink; }
     public void setLogoUrl(String logoUrl) { this.logoUrl = logoUrl;}
 
 }

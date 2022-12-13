@@ -73,7 +73,7 @@ public class JohnLewisScraper extends Thread{
                     //Adding to database
                     ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
                     HibernateXml hibernate = (HibernateXml) context.getBean("hibernate");
-                    hibernate.addLaptop(laptopBrand.text(), laptopModel, laptopDescription.text(), laptopImg, productLink, finalPrice);
+                    hibernate.addLaptop(laptopBrand.text(), laptopModel, laptopDescription.text(), laptopImg, productLink, finalPrice, logoUrl);
                     hibernate.shutDown();
                 }
             }
@@ -81,9 +81,8 @@ public class JohnLewisScraper extends Thread{
                 ex.printStackTrace();
             }
 
-            //Sleep for the crawl delay, which is in seconds
             try{
-                sleep(1000 * crawlDelay);//Sleep is in milliseconds, so we need to multiply the crawl delay by 1000
+                sleep(1000 * crawlDelay);//sleep 1s
             }
             catch(InterruptedException ex){
                 System.err.println(ex.getMessage());

@@ -74,16 +74,8 @@ public class LaptopOutletScraper extends Thread{
                         //Adding to database
                         ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
                         HibernateXml hibernate = (HibernateXml) context.getBean("hibernate");
-                        hibernate.addLaptop(laptopBrand, laptopModel, laptopDescription.text(), laptopImg, productLink, finalPrice);
+                        hibernate.addLaptop(laptopBrand, laptopModel, laptopDescription.text(), laptopImg, productLink, finalPrice, logoUrl);
                         hibernate.shutDown();
-
-                        //Output the data that we have downloaded
-//                System.out.println("Laptop outlet BRAND: " + laptopBrand +
-//                        "\nMODEL: " + laptopModel +
-//                        "\nImage url: " + laptopImg +
-//                        "\nLaptop price: " + laptopPrice.text() +
-//                        "\nProduct details url: " + productLink
-//                );
 
                     }
                 }
@@ -92,9 +84,8 @@ public class LaptopOutletScraper extends Thread{
                 }
             }
 
-            //Sleep for the crawl delay, which is in seconds
             try{
-                sleep(1000 * crawlDelay);//Sleep is in milliseconds, so we need to multiply the crawl delay by 1000
+                sleep(1000 * crawlDelay); //sleep 1s
             }
             catch(InterruptedException ex){
                 System.err.println(ex.getMessage());

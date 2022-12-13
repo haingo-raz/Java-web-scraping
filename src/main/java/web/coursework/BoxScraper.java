@@ -74,12 +74,12 @@ public class BoxScraper extends Thread {
                         String websiteLogo = "https://www.box.co.uk" + logoLink.attr("data-src");
 
                         //Box uk logo
-                        //String logoUrl = "https://www.box.co.uk/Images/box-logo2-FP_2110111013.svg";
+                        String logoUrl = "https://www.box.co.uk/Images/box-logo2-FP_2110111013.svg";
 
                         //Adding to database
                         ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
                         HibernateXml hibernate = (HibernateXml) context.getBean("hibernate");
-                        hibernate.addLaptop(laptopBrand, laptopModel, laptopDescription.text(), laptopImg, productLink, finalPrice);
+                        hibernate.addLaptop(laptopBrand, laptopModel, laptopDescription.text(), laptopImg, productLink, finalPrice, logoUrl);
                         hibernate.shutDown();
                     }
                 } catch (Exception ex) {

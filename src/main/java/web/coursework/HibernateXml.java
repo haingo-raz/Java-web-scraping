@@ -25,7 +25,7 @@ public class HibernateXml {
     }
 
     //Adding a new Laptop in the database
-    public ArrayList<Integer> addLaptop(String laptopBrand, String laptopModel, String laptopDescription, String laptopImgUrl, String sourceUrl, String price) {
+    public ArrayList<Integer> addLaptop(String laptopBrand, String laptopModel, String laptopDescription, String laptopImgUrl, String sourceUrl, String price, String logoUrl) {
         //create a new session instance
         Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
@@ -48,6 +48,7 @@ public class HibernateXml {
             comparison.setLaptopId(laptop.getLaptopId());
             comparison.setPrice(price);
             comparison.setSourceUrl(sourceUrl);
+            comparison.setLogoUrl(logoUrl);
             //Add to database
             session.save(comparison);
 

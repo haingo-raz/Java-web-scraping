@@ -1,9 +1,7 @@
 package web.coursework;
 
 import org.jsoup.Jsoup;
-import java.io.IOException;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -58,7 +56,7 @@ public class AmazonScraper extends Thread {
                         String[] title = laptopDescription.text().split(" ");
 
                         //Amazon logo
-                        //String logoUrl = "https://m.media-amazon.com/images/I/31hIyqA%2BktL.jpg";
+                        String logoUrl = "https://m.media-amazon.com/images/I/31hIyqA%2BktL.jpg";
 
                         if (title.length > 4) {
                             laptopBrand = title[0];
@@ -71,7 +69,7 @@ public class AmazonScraper extends Thread {
                         //Adding to database
                         ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
                         HibernateXml hibernate = (HibernateXml) context.getBean("hibernate");
-                        hibernate.addLaptop(laptopBrand, laptopModel, laptopDescription.text(), laptopImg, productLink, finalPrice);
+                        hibernate.addLaptop(laptopBrand, laptopModel, laptopDescription.text(), laptopImg, productLink, finalPrice, logoUrl);
                         hibernate.shutDown();
                     }
                 } catch(Exception ex){
@@ -79,9 +77,8 @@ public class AmazonScraper extends Thread {
                 }
             }
 
-            //Sleep for the crawl delay, which is in seconds
             try{
-                sleep(1000 * crawlDelay);//Sleep is in milliseconds, so we need to multiply the crawl delay by 1000
+                sleep(1000 * crawlDelay);//sleep 1s
             }
             catch(InterruptedException ex){
                 System.err.println(ex.getMessage());
