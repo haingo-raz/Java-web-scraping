@@ -1,20 +1,13 @@
 package web.coursework;
 
-//Hibernate imports
-import java.lang.module.Configuration;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import org.hibernate.boot.Metadata;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 public class HibernateXml {
 
-    //Use this class to create new Sessions to interact with the database
     private static SessionFactory sessionFactory;
     static boolean laptopDeletionCompleted = false;
     static boolean comparisonDeletionCompleted = false;
@@ -36,7 +29,7 @@ public class HibernateXml {
             Comparison comparison = new Comparison();
 
             //Set the values
-            laptop.setLaptopBrand(laptop.getLaptopBrand());
+            laptop.setLaptopBrand(laptopBrand);
             laptop.setLaptopModel(laptopModel);
             laptop.setLaptopDescription(laptopDescription);
             laptop.setLaptopImgUrl(laptopImgUrl);
