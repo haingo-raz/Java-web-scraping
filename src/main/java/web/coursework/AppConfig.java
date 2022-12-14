@@ -35,7 +35,7 @@ public class AppConfig {
     }
 
     /**
-     *
+     * Amazon scraper bean
      * @return scraper1
      */
     @Bean
@@ -45,7 +45,7 @@ public class AppConfig {
     }
 
     /**
-     *
+     * Box scraper bean
      * @return scraper2
      */
     @Bean
@@ -55,7 +55,7 @@ public class AppConfig {
     }
 
     /**
-     *
+     * John Lewis scraper bean
      * @return scraper3
      */
     @Bean
@@ -65,7 +65,7 @@ public class AppConfig {
     }
 
     /**
-     *
+     * Laptop Outlet scraper bean
      * @return scraper4
      */
     @Bean
@@ -75,7 +75,7 @@ public class AppConfig {
     }
 
     /**
-     *
+     * Quzo scraper bean
      * @return scraper5
      */
     @Bean
@@ -85,6 +85,7 @@ public class AppConfig {
     }
 
     /**
+     * Hibernate bean
      *
      * @return hibernate
      */
@@ -96,7 +97,7 @@ public class AppConfig {
     }
 
     /**
-     *SessionFactory Bean
+     * SessionFactory Bean
      * @return sessionFactory
      */
     public SessionFactory sessionFactory(){

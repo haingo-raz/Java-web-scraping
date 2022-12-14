@@ -11,9 +11,7 @@ public class ScraperHandler {
     }
 
     //Getter
-    public static List<Thread> getScraperList(){
-        return scraperList;
-    }
+    public static List<Thread> getScraperList(){ return scraperList; }
 
     public static void setScraperList(List<Thread> sList) {
         scraperList = sList;
@@ -27,15 +25,15 @@ public class ScraperHandler {
 
 
     //Join scraper
-//    public void joinThreads(){
-//        for (Thread AmazonScraper : scraperList) {
-//
-//            try {
-//                AmazonScraper.join();
-//            }
-//            catch (InterruptedException ex){
-//                System.err.println(ex.getMessage());
-//            }
-//        }
-//    }
+    public void joinThreads(){
+        for (Thread LaptopScraper : scraperList) {
+
+            try {
+                LaptopScraper.join();
+            }
+            catch (InterruptedException ex){
+                System.err.println(ex.getMessage());
+            }
+        }
+    }
 }

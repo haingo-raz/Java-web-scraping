@@ -6,6 +6,10 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+/**
+ * Hibernate example that uses XML mapping to specify the mapping between a laptop
+ * object and the laptops table in the cw1 database
+ */
 public class HibernateXml {
 
     private static SessionFactory sessionFactory;
@@ -23,7 +27,7 @@ public class HibernateXml {
         Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
 
-        if (!checkLaptopDuplicates("laptopBrand", laptopBrand, "laptopModel", laptopModel)) {
+        //if (!checkLaptopDuplicates("laptopBrand", laptopBrand, "laptopModel", laptopModel)) {
 
             Laptops laptop = new Laptops();
             Comparison comparison = new Comparison();
@@ -61,26 +65,34 @@ public class HibernateXml {
                     "\nLaptop Description: " + laptopDescription +
                     "\nLaptop Image Url: " + laptopImgUrl);
             return ids;
-        } else if (checkLaptopDuplicates("laptopDescription", laptopDescription, "laptopImgUrl", laptopImgUrl)) {
-            session.close();
-            System.out.println("Item already in the database");
-            return new ArrayList<>();
-        } else {
-            Laptops existingLaptop = matchLaptop("laptopModel", laptopModel);
-            Comparison comparison = new Comparison();
-
-            //Add comparison to database
-            comparison.setLaptopId(existingLaptop.getLaptopId());
-            comparison.setPrice(price);
-            comparison.setSourceUrl(sourceUrl);
-
-            //Save
-            session.getTransaction().commit();
-            session.close();
-            System.out.println("New comparison added");
-            return new ArrayList<>();
-        }
+        //}
+//        else if (checkLaptopDuplicates("laptopDescription", laptopDescription, "laptopImgUrl", laptopImgUrl)) {
+//            session.close();
+//            System.out.println("Item already in the database");
+//            return new ArrayList<>();
+//        }
+//        else if (checkComparisonDuplicate("sourceUrl", sourceUrl)){
+//            session.close();
+//            System.out.println("Comparison already in the database");
+//            return new ArrayList<>();
+//        }
+//        else {
+//            Laptops existingLaptop = matchLaptop("laptopModel", laptopModel);
+//            Comparison comparison = new Comparison();
+//
+//            //Add comparison to database
+//            comparison.setLaptopId(existingLaptop.getLaptopId());
+//            comparison.setPrice(price);
+//            comparison.setSourceUrl(sourceUrl);
+//
+//            //Save
+//            session.getTransaction().commit();
+//            session.close();
+//            System.out.println("New comparison added");
+//            return new ArrayList<>();
+//        }
     }
+
 
     public boolean checkLaptopDuplicates(String column1, String data1, String column2, String data2) {
         //Set a new session factory
@@ -95,7 +107,7 @@ public class HibernateXml {
         //Set a new session factory
         Session session = sessionFactory.getCurrentSession();
 
-        List<Comparison> comparisonList = session.createQuery(" from Comparison where " + column1 + " = '" + data1+ "'").getResultList();
+        List<Comparison> comparisonList = session.createQuery(" from Comparison where " + column1 + " = '" + data1 + "'").getResultList();
         return comparisonList.size() > 0;
     }
 

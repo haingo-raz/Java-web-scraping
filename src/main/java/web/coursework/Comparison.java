@@ -1,9 +1,7 @@
 package web.coursework;
 
 //represent the comparison table from the database
-
 public class Comparison {
-
     private int comparisonId;
     private int laptopId;
     private String price;

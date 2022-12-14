@@ -24,7 +24,7 @@ public class LaptopOutletScraper extends Thread{
             System.out.println("LaptopOutletScraper thread is scraping data.");
 
             //Scrape data
-            for (int pageNumber = 1; pageNumber < 40; pageNumber++) {
+            for (int pageNumber = 1; pageNumber < 60; pageNumber++) {
                 try{
                     //Download HTML document from website
                     Document doc = Jsoup.connect("https://www.laptopoutlet.co.uk/laptops-and-notebooks.html?p=" + pageNumber)

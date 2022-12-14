@@ -26,7 +26,7 @@ public class QuzoScraper extends Thread{
             System.out.println("QuzoScraper thread is scraping data.");
 
             //Scrape data
-            for (int pageNumber = 1; pageNumber < 70; pageNumber++) {
+            for (int pageNumber = 1; pageNumber < 60; pageNumber++) {
                 try{
                     //Download HTML document from website
                     Document doc = Jsoup.connect("https://www.quzo.net/products/laptops/?page=" + pageNumber)

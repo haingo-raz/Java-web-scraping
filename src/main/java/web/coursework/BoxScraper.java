@@ -1,7 +1,6 @@
 package web.coursework;
 
 import org.jsoup.Jsoup;
-import java.io.IOException;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -24,7 +23,7 @@ public class BoxScraper extends Thread {
             System.out.println("BoxScraper thread is scraping data.");
 
             //Scrape data from Amazon
-            for (int pageNumber = 1; pageNumber < 10; pageNumber++) {
+            for (int pageNumber = 1; pageNumber < 60; pageNumber++) {
 
                 try {
                     //Download HTML document from website

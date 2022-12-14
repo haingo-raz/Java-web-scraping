@@ -150,40 +150,40 @@ public class AppTest {
 
 
     //Save Laptop and Comparison and check if Laptop and Comparison has been deleted Test
-    @Test
-    @Order(5)
-    @DisplayName("Save Laptop and Comparison and check if Laptop and Comparison has been deleted Test")
-    void saveLaptopTest() {
+//    @Test
+//    @Order(5)
+//    @DisplayName("Save Laptop and Comparison and check if Laptop and Comparison has been deleted Test")
+//    void saveLaptopTest() {
+//
+//        ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+//        Hibernate hibernate = (Hibernate) context.getBean("hibernate");
+//
+//        Laptops laptop = new Laptops();
+//        String randomName = String.valueOf(Math.random() * 10);
+//        String brand = "Lenovo";
+//        String model = "Thinkpad";
+//        String price = "2000";
+//
+//        laptop.setLaptopBrand(brand);
 
-        ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
-        Hibernate hibernate = (Hibernate) context.getBean("hibernate");
-
-        Laptops laptop = new Laptops();
-        String randomName = String.valueOf(Math.random() * 10);
-        String brand = "Lenovo";
-        String model = "Thinkpad"
-        String price = "2000";
-
-        laptop.setLaptopBrand(brand);
-
-        //Use Hibernate to save TV
+        //Use Hibernate to save Laptop
 //        ArrayList<Integer> addLaptop = hibernate.addLaptop();
-//        laptopId = savedTVArray.get(0);
-//        idComparison = savedTVArray.get(1);
+//        laptopId = savedLaptopArray.get(0);
+//        comparisonId = savedLaptopArray.get(1);
 //
-//        hibernate.deleteTV(idTV);
-//        hibernate.deleteComparison(idComparison);
+//        hibernate.deleteLaptop(laptopId);
+//        hibernate.deleteComparison(comparisonId);
 //
-//        assertEquals(Hibernate.tvDeletetionCompleted, true);
+//        assertEquals(Hibernate.laptopDeletetionCompleted, true);
 //        assertEquals(Hibernate.comparisonDeletetionCompleted, true);
 //        hibernate.shutDown();
 //
 //        System.out.println("Test 5 has been completed");
-    }
-
-    @After
-    public void after() {
-        sessionFactory.close();
-    }
+//    }
+//
+//    @After
+//    public void after() {
+//        sessionFactory.close();
+//    }
 
 }
