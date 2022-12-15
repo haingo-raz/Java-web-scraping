@@ -12,6 +12,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.jupiter.api.*;
 import org.springframework.context.ApplicationContext;
@@ -38,28 +39,28 @@ public class AppTest {
     static int comparisonId;
 
     // Session Factory Test
-//    @Test
-//    @Order(1)
-//    @DisplayName("Session Factory Test")
-//    void sessionFactoryTest() {
-//        HibernateXml hibernate = new HibernateXml();
-//        AppConfig app = new AppConfig();
-//
-//        try {
-//            hibernate.setSessionFactory(app.sessionFactory());
-//        } catch (Exception ex) {
-//            fail("Error: Can't Set Session Factory: " + ex.getMessage());
-//        }
-//
-//        assertNotNull(hibernate.getSessionFactory());
-//        System.out.println("Test 1 has been completed");
-//    }
+    @Test
+    @Order(1)
+    @DisplayName("Test1: Session Factory")
+    void sessionFactoryTest() {
+        HibernateXml hibernate = new HibernateXml();
+        AppConfig app = new AppConfig();
+
+        try {
+            hibernate.setSessionFactory(app.sessionFactory());
+        } catch (Exception ex) {
+            fail("Error: Can't Set Session Factory: " + ex.getMessage());
+        }
+
+        assertNotNull(hibernate.getSessionFactory());
+        System.out.println("Test 1 has been completed");
+    }
 
 
     //Scraper List Test
     @Test
     @Order(2)
-    @DisplayName("Scraper List Test")
+    @DisplayName("Test 2: Scraper")
     void scraperListTest() {
 
         ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
@@ -74,7 +75,7 @@ public class AppTest {
     //Running Threads Test
     @Test
     @Order(3)
-    @DisplayName("Running Threads Test")
+    @DisplayName("Test 3: Running the threads")
     void runningThreadsTest() {
 
         ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
@@ -116,7 +117,7 @@ public class AppTest {
                 System.err.println("Session Factory build failed.");
                 StandardServiceRegistryBuilder.destroy(registry);
             }
-            //Ouput result
+            //Output result
             System.out.println("Session factory built.");
         } catch (Throwable ex) {
             // Make sure you log the exception, as it might be swallowed
@@ -129,7 +130,7 @@ public class AppTest {
     //Check if web scraper is scraping products Test.
     @Test
     @Order(4)
-    @DisplayName("Check if web scraper is scraping products Test.")
+    @DisplayName("Test 4: Web scrapper")
     void deleteTVTest() throws IOException {
 
         //Download HTML document from website
@@ -149,41 +150,34 @@ public class AppTest {
     }
 
 
-    //Save Laptop and Comparison and check if Laptop and Comparison has been deleted Test
-//    @Test
-//    @Order(5)
-//    @DisplayName("Save Laptop and Comparison and check if Laptop and Comparison has been deleted Test")
-//    void saveLaptopTest() {
-//
-//        ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
-//        Hibernate hibernate = (Hibernate) context.getBean("hibernate");
-//
-//        Laptops laptop = new Laptops();
-//        String randomName = String.valueOf(Math.random() * 10);
-//        String brand = "Lenovo";
-//        String model = "Thinkpad";
-//        String price = "2000";
-//
-//        laptop.setLaptopBrand(brand);
+    //Adding a laptop with hibernate
+    @Test
+    @Order(5)
+    @DisplayName("Test 5: Add laptop with hibernate")
+    void saveLaptopTest() {
+
+        ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+        HibernateXml hibernate = (HibernateXml) context.getBean("hibernate");
+
+        Laptops laptop = new Laptops();
+
+        String brand = "Lenovo";
+        String model = "Thinkpad";
+        String description = "Model 2020";
+        String url = "https://test-url.com";
+        String source_url = "https://test-source-url.com";
+        String price = "2000";
+        String logoUrl = "https://test-logo-url.com";
 
         //Use Hibernate to save Laptop
-//        ArrayList<Integer> addLaptop = hibernate.addLaptop();
-//        laptopId = savedLaptopArray.get(0);
-//        comparisonId = savedLaptopArray.get(1);
-//
-//        hibernate.deleteLaptop(laptopId);
-//        hibernate.deleteComparison(comparisonId);
-//
-//        assertEquals(Hibernate.laptopDeletetionCompleted, true);
-//        assertEquals(Hibernate.comparisonDeletetionCompleted, true);
-//        hibernate.shutDown();
-//
-//        System.out.println("Test 5 has been completed");
-//    }
-//
-//    @After
-//    public void after() {
-//        sessionFactory.close();
-//    }
+        ArrayList<Integer> savedLaptopArray = hibernate.addLaptop(brand, model, description, url, source_url, price, logoUrl);
+
+        System.out.println("Test 5 has been completed");
+    }
+
+    @After
+    public void after() {
+        sessionFactory.close();
+    }
 
 }

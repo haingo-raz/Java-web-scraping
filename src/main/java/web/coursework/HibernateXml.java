@@ -13,11 +13,11 @@ import org.hibernate.SessionFactory;
 public class HibernateXml {
 
     private static SessionFactory sessionFactory;
-    static boolean laptopDeletionCompleted = false;
-    static boolean comparisonDeletionCompleted = false;
+    public static boolean laptopDeletionCompleted = false;
+    public static boolean comparisonDeletionCompleted = false;
 
     /** Empty constructor */
-    HibernateXml(){
+    public HibernateXml(){
 
     }
 
@@ -143,7 +143,7 @@ public class HibernateXml {
             //save to database
             session.getTransaction().commit();
         }
-        System.out.println("Laptop delete with ID " + laptopId);
+        System.out.println("Laptop deleted with ID " + laptopId);
         laptopDeletionCompleted = true;
     }
 
@@ -170,7 +170,7 @@ public class HibernateXml {
             //save to database
             session.getTransaction().commit();
         }
-        System.out.println("Laptop delete with ID " + comparisonId);
+        System.out.println("Comparison deleted with ID " + comparisonId);
         comparisonDeletionCompleted = true;
     }
 
