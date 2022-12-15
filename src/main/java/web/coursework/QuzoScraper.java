@@ -1,15 +1,17 @@
 package web.coursework;
 
 import org.jsoup.Jsoup;
-import java.io.IOException;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-public class QuzoScraper extends Thread{
 
+/**
+ * Web scraper for quzo.net
+ */
+public class QuzoScraper extends Thread{
 
     //Interval between HTTP requests to the server in seconds.
     private int crawlDelay = 2;
@@ -46,6 +48,7 @@ public class QuzoScraper extends Thread{
                         String laptopModel;
                         String[] title = laptopDescription.text().split(" ");
 
+                        //Get laptop brand and model
                         if (title.length > 4) {
                             laptopBrand = title[0];
                             laptopModel = title [1];
@@ -54,11 +57,10 @@ public class QuzoScraper extends Thread{
                             laptopModel = " ";
                         }
 
-                        //Get the laptop brand
 
                         //Get the FINAL product price
                         Elements laptopPrice = prods.get(i).select("span.fixedPrice");
-                        //get the string value
+                        //get the price text
                         String finalPrice = laptopPrice.text();
 
                         //Get the laptop image URL
@@ -74,7 +76,7 @@ public class QuzoScraper extends Thread{
                         //Get the website logo url
                         String logoUrl = "https://assets.quzo.co.uk/site/structure/quzo.svg?r=1.11211";
 
-                        //Adding to database
+                        //Adding laptop to database
                         ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
                         HibernateXml hibernate = (HibernateXml) context.getBean("hibernate");
                         hibernate.addLaptop(laptopBrand, laptopModel, laptopDescription.text(), laptopImg, productLink, finalPrice, logoUrl);

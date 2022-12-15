@@ -6,6 +6,9 @@ import org.jsoup.select.Elements;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+/**
+ * Web scraper for Amazon.com
+ */
 public class AmazonScraper extends Thread {
 
     //Interval between HTTP requests to the server in seconds.
@@ -38,7 +41,7 @@ public class AmazonScraper extends Thread {
 
                         //Get the product price
                         Elements laptopPrice = prods.get(i).select("span.a-price-whole");
-                        //convert the price in numbers
+                        //Get the price text
                         String finalPrice = laptopPrice.text();
 
                         //Get the laptop image url
@@ -58,6 +61,7 @@ public class AmazonScraper extends Thread {
                         //Amazon logo
                         String logoUrl = "https://m.media-amazon.com/images/I/31hIyqA%2BktL.jpg";
 
+                        //Get laptop brand and model from the description
                         if (title.length > 4) {
                             laptopBrand = title[0];
                             laptopModel = title [1];

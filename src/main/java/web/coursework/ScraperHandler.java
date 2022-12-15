@@ -2,6 +2,10 @@ package web.coursework;
 
 import java.util.List;
 
+
+/**
+ * Manage the scrapers
+ */
 public class ScraperHandler {
 
     private static List<Thread> scraperList;
@@ -22,8 +26,7 @@ public class ScraperHandler {
             LaptopScraper.start();
         }
     }
-
-
+    
     //Join scraper
     public void joinThreads(){
         for (Thread LaptopScraper : scraperList) {

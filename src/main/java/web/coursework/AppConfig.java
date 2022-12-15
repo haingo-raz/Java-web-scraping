@@ -8,6 +8,9 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.springframework.context.annotation.*;
 
+/**
+ * Spring configuration
+ */
 @Configuration
 public class AppConfig {
 

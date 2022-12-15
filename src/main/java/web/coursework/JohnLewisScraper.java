@@ -8,6 +8,10 @@ import org.jsoup.select.Elements;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+
+/**
+ * Web scraper for johnlewis.com
+ */
 public class JohnLewisScraper extends Thread{
 
     //Interval between HTTP requests to the server in seconds.
@@ -47,6 +51,7 @@ public class JohnLewisScraper extends Thread{
 
                     String laptopModel;
 
+                    //Get laptop brand and model
                     if (title.length > 4) {
                         laptopModel = title [0];
                     } else {
@@ -70,7 +75,7 @@ public class JohnLewisScraper extends Thread{
                     //Logo url
                     String logoUrl = "https://www.johnlewis.com/header-ui-assets/static/images/john-lewis-partners-f6c40704.svg";
 
-                    //Adding to database
+                    //Adding laptop to database
                     ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
                     HibernateXml hibernate = (HibernateXml) context.getBean("hibernate");
                     hibernate.addLaptop(laptopBrand.text(), laptopModel, laptopDescription.text(), laptopImg, productLink, finalPrice, logoUrl);

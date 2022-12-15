@@ -1,5 +1,8 @@
 package web.coursework;
 
+/**
+ * Represents the laptops table from the database
+ */
 public class Laptops {
     private int laptopId;
     private String laptopBrand;

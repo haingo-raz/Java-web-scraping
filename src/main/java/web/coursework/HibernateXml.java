@@ -94,6 +94,7 @@ public class HibernateXml {
     }
 
 
+    //Checking for laptop duplicates
     public boolean checkLaptopDuplicates(String column1, String data1, String column2, String data2) {
         //Set a new session factory
         Session session = sessionFactory.getCurrentSession();
@@ -102,7 +103,7 @@ public class HibernateXml {
         return laptopList.size() > 0;
     }
 
-
+    //Checking for comparison duplicates
     public boolean checkComparisonDuplicate(String column1, String data1){
         //Set a new session factory
         Session session = sessionFactory.getCurrentSession();
@@ -111,6 +112,7 @@ public class HibernateXml {
         return comparisonList.size() > 0;
     }
 
+    //Matching laptops
     public Laptops matchLaptop(String column1, String data1){
         //Set a new session factory
         Session session = sessionFactory.getCurrentSession();
@@ -118,6 +120,7 @@ public class HibernateXml {
         return laptopList.get(0);
     }
 
+    //Deleting a laptop by id
     public void deleteLaptop(int laptopId){
     Laptops laptops;
 
@@ -147,7 +150,7 @@ public class HibernateXml {
         laptopDeletionCompleted = true;
     }
 
-
+    //Deleting a comparison by id
     public void deleteComparison(int comparisonId){
         Comparison comparison;
 

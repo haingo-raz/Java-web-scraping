@@ -7,6 +7,10 @@ import org.jsoup.select.Elements;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+
+/**
+ * Web scraper for Laptopoutlet.co.uk
+ */
 public class LaptopOutletScraper extends Thread{
 
     //Interval between HTTP requests to the server in seconds.
@@ -44,6 +48,7 @@ public class LaptopOutletScraper extends Thread{
                         String laptopModel;
                         String[] title = laptopDescription.text().split(" ");
 
+                        //Get laptop brand and model
                         if (title.length > 4) {
                             laptopBrand = title[0];
                             laptopModel = title [1];
@@ -51,7 +56,6 @@ public class LaptopOutletScraper extends Thread{
                             laptopBrand = " ";
                             laptopModel = " ";
                         }
-
 
                         //Get the final product price
                         Elements laptopPrice = prods.get(i).select("span.including_vat_price_box"); //price description
@@ -71,12 +75,11 @@ public class LaptopOutletScraper extends Thread{
                         //Logo url
                         String logoUrl = "https://static-media.laptopoutlet.co.uk/logo/stores/1/LaptopOutlet_newlogo-01.png";
 
-                        //Adding to database
+                        //Adding laptop to database
                         ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
                         HibernateXml hibernate = (HibernateXml) context.getBean("hibernate");
                         hibernate.addLaptop(laptopBrand, laptopModel, laptopDescription.text(), laptopImg, productLink, finalPrice, logoUrl);
                         hibernate.shutDown();
-
                     }
                 }
                 catch(Exception ex){

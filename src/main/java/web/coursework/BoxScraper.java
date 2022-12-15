@@ -7,6 +7,10 @@ import org.jsoup.select.Elements;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+
+/**
+ * Web scraper for Box.co.uk
+ */
 public class BoxScraper extends Thread {
     //Interval between HTTP requests to the server in seconds.
     private int crawlDelay = 2;
@@ -45,6 +49,7 @@ public class BoxScraper extends Thread {
                         String laptopBrand;
                         String laptopModel;
 
+                        //Get laptop brand and laptop model
                         if (title.length > 4) {
                             laptopBrand = title[0];
                             laptopModel = title[1];
@@ -55,7 +60,7 @@ public class BoxScraper extends Thread {
 
                         //Get the FINAL product price
                         Elements laptopPrice = prods.get(i).select("p.p-list-sell");
-                        //convert the price in numbers
+                        //Get the price text
                         String finalPrice = laptopPrice.text();
 
                         //Get the laptop image url => good
