@@ -27,7 +27,7 @@ public class HibernateXml {
         Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
 
-        //if (!checkLaptopDuplicates("laptopBrand", laptopBrand, "laptopModel", laptopModel)) {
+        if (!checkLaptopDuplicates("laptopDescription", laptopDescription, "laptopImgUrl", laptopImgUrl)) {
 
             Laptops laptop = new Laptops();
             Comparison comparison = new Comparison();
@@ -65,32 +65,27 @@ public class HibernateXml {
                     "\nLaptop Description: " + laptopDescription +
                     "\nLaptop Image Url: " + laptopImgUrl);
             return ids;
-        //}
-//        else if (checkLaptopDuplicates("laptopDescription", laptopDescription, "laptopImgUrl", laptopImgUrl)) {
-//            session.close();
-//            System.out.println("Item already in the database");
-//            return new ArrayList<>();
-//        }
-//        else if (checkComparisonDuplicate("sourceUrl", sourceUrl)){
-//            session.close();
-//            System.out.println("Comparison already in the database");
-//            return new ArrayList<>();
-//        }
-//        else {
-//            Laptops existingLaptop = matchLaptop("laptopModel", laptopModel);
-//            Comparison comparison = new Comparison();
-//
-//            //Add comparison to database
-//            comparison.setLaptopId(existingLaptop.getLaptopId());
-//            comparison.setPrice(price);
-//            comparison.setSourceUrl(sourceUrl);
-//
-//            //Save
-//            session.getTransaction().commit();
-//            session.close();
-//            System.out.println("New comparison added");
-//            return new ArrayList<>();
-//        }
+        }
+        else if (checkComparisonDuplicate("sourceUrl", sourceUrl)){
+            session.close();
+            System.out.println("Comparison already in the database");
+            return new ArrayList<>();
+        }
+        else {
+            Laptops existingLaptop = matchLaptop("laptopModel", laptopModel);
+            Comparison comparison = new Comparison();
+
+            //Add comparison to database
+            comparison.setLaptopId(existingLaptop.getLaptopId());
+            comparison.setPrice(price);
+            comparison.setSourceUrl(sourceUrl);
+
+            //Save
+            session.getTransaction().commit();
+            session.close();
+            System.out.println("New comparison added");
+            return new ArrayList<>();
+        }
     }
 
 
@@ -119,6 +114,7 @@ public class HibernateXml {
         List<Laptops> laptopList = session.createQuery("from Laptops where "+ column1 + " = " + data1).getResultList();
         return laptopList.get(0);
     }
+
 
     //Deleting a laptop by id
     public void deleteLaptop(int laptopId){

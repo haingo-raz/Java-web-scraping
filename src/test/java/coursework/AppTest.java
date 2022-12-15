@@ -156,7 +156,7 @@ public class AppTest {
         ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
         HibernateXml hibernate = (HibernateXml) context.getBean("hibernate");
 
-        Laptops laptop = new Laptops();
+        //Laptops laptop = new Laptops();
 
         String brand = "Lenovo";
         String model = "Thinkpad";

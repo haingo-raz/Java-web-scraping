@@ -17,6 +17,13 @@
 
     <dependencies>
 
+        <!-- JSoup Dependency -->
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.10.2</version>
+        </dependency>
+
         <!-- JUnit 5 library -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -45,6 +52,8 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.31</version>
         </dependency>
+
+        <!-- Junit -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -112,7 +121,7 @@
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
-                    <!--  MainClass in mainfest make a executable jar  -->
+                    <!--  MainClass in manifest make a executable jar  -->
                     <archive>
                         <manifest>
                             <mainClass>web.coursework.Main</mainClass>
