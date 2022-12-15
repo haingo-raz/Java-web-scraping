@@ -1,10 +1,8 @@
 package coursework;
 
-import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import static org.junit.jupiter.api.Assertions.*;
-
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -103,13 +101,12 @@ public class AppTest {
             StandardServiceRegistryBuilder standardServiceRegistryBuilder = new StandardServiceRegistryBuilder();
 
             //Load configuration from hibernate configuration file.
-            //Here we are using a configuration file that specifies Java annotations.
             standardServiceRegistryBuilder.configure("resources/hibernate.cfg.xml");
 
-            //Create the registry that will be used to build the session factory
+            //Create the registry to build the session factory
             StandardServiceRegistry registry = standardServiceRegistryBuilder.build();
             try {
-                //Create the session factory - this is the goal of the init method.
+                //Create the session factory
                 sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
             } catch (Exception e) {
                 /* The registry would be destroyed by the SessionFactory,
@@ -179,5 +176,4 @@ public class AppTest {
     public void after() {
         sessionFactory.close();
     }
-
 }

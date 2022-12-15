@@ -21,12 +21,13 @@ public class ScraperHandler {
         scraperList = sList;
     }
 
+    //Start a thread
     public void startThreads(){
         for (Thread LaptopScraper : scraperList){
             LaptopScraper.start();
         }
     }
-    
+
     //Join scraper
     public void joinThreads(){
         for (Thread LaptopScraper : scraperList) {

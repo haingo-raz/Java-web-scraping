@@ -70,7 +70,7 @@ public class AmazonScraper extends Thread {
                             laptopModel = " ";
                         }
 
-                        //Adding to database
+                        //Adding laptop to database
                         ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
                         HibernateXml hibernate = (HibernateXml) context.getBean("hibernate");
                         hibernate.addLaptop(laptopBrand, laptopModel, laptopDescription.text(), laptopImg, productLink, finalPrice, logoUrl);
