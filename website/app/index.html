@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./css/index.css">
+    <link rel="stylesheet" type="text/css" href="./css/pagination.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Search</title>
+</head>
+<body>
+    <!-- Landing page with searchbar -->
+    <div class="home" id="home">
+        <div class="nav">
+            <img class="logo" alt=" logo" src="./images/MyLaptop.png">
+        </div>
+        <div class="searchContainer">
+            <h1>MyLaptop</h1>
+            <p>Find your next laptop</p>
+            <form>
+                <input type="search" id="searchInput" name="searchInput" for="keyword" name="keyword" placeholder="Search...">
+                <button type="button" onclick="loadSearchResults()" class=""><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- Search results section -->
+    <div class="resultsContainer" id="resultsContainer">
+
+        <!-- Search results are loaded here -->
+
+    </div>
+
+
+    <!-- Laptop comparison section -->
+    <div class="productDetails">
+        <div class="productDescription" id="productDescription">
+
+            <!-- Generated laptop image and name  -->
+
+        </div>
+        <div class="productSource" id="productSource">
+
+            <!-- Generated website sources  -->
+
+        </div> 
+    </div>
+
+    <!-- javascript file -->
+    <script src="./js/display.js" async></script>
+</body>
+</html>
