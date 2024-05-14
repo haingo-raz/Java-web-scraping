@@ -14,7 +14,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 public class LaptopOutletScraper extends Thread{
 
     //Interval between HTTP requests to the server in seconds.
-    private int crawlDelay = 2;
+    private int crawlDelay = 10;
 
     //Allows clean application shutdown
     volatile private boolean runThread = false;
