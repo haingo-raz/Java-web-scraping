@@ -13,34 +13,38 @@ function loadSearchResults(){
         //if empty do nothing
     }
     else{
-        //Set up XMLHttpRequest
-        let xhttp = new XMLHttpRequest();
+        try{
+            //Set up XMLHttpRequest
+            let xhttp = new XMLHttpRequest();
 
-        //object populated with user input 
-        let result = {
-            keyword: keyword
-        };
+            //object populated with user input 
+            let result = {
+                keyword: keyword
+            };
 
-        //Send data to the server
-        xhttp.open("POST", "/search", true);  //POST
-        xhttp.setRequestHeader("Content-type", "application/json");
-        xhttp.send(JSON.stringify(result)); //send object data to the server in JSON format
+            //Send data to the server
+            xhttp.open("POST", "/search", true);  //POST
+            xhttp.setRequestHeader("Content-type", "application/json");
+            xhttp.send(JSON.stringify(result)); //send object data to the server in JSON format
 
-        //Upon receiving server's response
-        xhttp.onload = () => {
+            //Upon receiving server's response
+            xhttp.onload = () => {
 
-            if (xhttp.readyState == 4 && xhttp.status == 200) {
+                if (xhttp.readyState == 4 && xhttp.status == 200) {
 
-                //Store data from server into global variable
-                postsJson = xhttp.responseText;
-                
-                //Call display function with data received from server
-                displaySearchedProducts(postsJson, keyword);
+                    //Store data from server into global variable
+                    postsJson = xhttp.responseText;
+                    
+                    //Call display function with data received from server
+                    displaySearchedProducts(postsJson, keyword);
 
-            } else {              
-                //error
-            }
-        };
+                } else {              
+                    //error
+                }
+            };
+        } catch(error) {
+            console.log("error: " + error);
+        }
     }
 } 
 
