@@ -186,5 +186,4 @@ public class HibernateXml {
     public void shutDown(){
         sessionFactory.close();
     }
-
 }

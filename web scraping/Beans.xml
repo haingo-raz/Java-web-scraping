@@ -4,17 +4,5 @@
    xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
    xsi:schemaLocation = "http://www.springframework.org/schema/beans
    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
-
-<!--   <bean id = "myCar" class = "eu.davidgamez.springdemo.Car">-->
-<!--      <property name = "colour" value = "Red"/>-->
-<!--      <property name = "manufacturer" value = "Ford"/>-->
-<!--      <property name = "owner" ref= "myPerson"/>-->
-<!--   </bean>-->
-
-<!--   <bean id = "myPerson" class = "eu.davidgamez.springdemo.Person">-->
-<!--      <property name = "name" value = "Tony"/>-->
-<!--      <property name = "age" value = "31"/>-->
-<!--   </bean>-->
-   
 </beans>
 

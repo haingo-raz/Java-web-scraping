@@ -15,12 +15,9 @@ public class Laptops {
     }
 
     //Getters
-    public int getLaptopId() {
-        return laptopId;
-    }
+    public int getLaptopId() { return laptopId;}
     public String getLaptopBrand() { return laptopBrand;}
     public String getLaptopModel() { return laptopModel; }
-
     public String getLaptopDescription() { return laptopDescription;}
     public String getLaptopImgUrl () {return laptopImgUrl;}
 
@@ -30,9 +27,7 @@ public class Laptops {
     public void setLaptopBrand(String laptopBrand) { this.laptopBrand = laptopBrand;}
     public void setLaptopModel(String laptopModel) { this.laptopModel = laptopModel;}
     public void setLaptopDescription(String laptopDescription) { this.laptopDescription = laptopDescription;}
-    //public void setLaptopLink(String laptopLink){ this.laptopLink = laptopLink; }
     public void setLaptopImgUrl(String laptopImgUrl) { this.laptopImgUrl = laptopImgUrl;}
-
 
     /** Returns a String description of the class */
     @Override

@@ -2,7 +2,6 @@ package web.coursework;
 
 import java.util.List;
 
-
 /**
  * Manage the scrapers
  */
@@ -17,6 +16,7 @@ public class ScraperHandler {
     //Getter
     public static List<Thread> getScraperList(){ return scraperList; }
 
+    //Setter
     public static void setScraperList(List<Thread> sList) {
         scraperList = sList;
     }

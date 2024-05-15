@@ -6,16 +6,20 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.jupiter.api.*;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.core.annotation.Order;
+
 import web.coursework.AppConfig;
 import web.coursework.HibernateXml;
 import web.coursework.Laptops;
@@ -25,8 +29,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * Unit testing.
- */
+ Unit testing.
+**/
 
 public class AppTest {
 
@@ -50,6 +54,7 @@ public class AppTest {
             fail("Error: Can't Set Session Factory: " + ex.getMessage());
         }
 
+        //Asserting that the session factory is not null
         assertNotNull(hibernate.getSessionFactory());
         System.out.println("Test 1 has been completed");
     }
@@ -64,6 +69,7 @@ public class AppTest {
         ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
         ScraperHandler handler = (ScraperHandler) context.getBean("scraperHandler");
 
+        //Asserting that the handler is not null
         assertNotNull(handler);
         System.out.println("Test 2 has been completed");
     }
@@ -87,14 +93,14 @@ public class AppTest {
             fail("Failed to start the threads" + ex.getMessage());
         }
 
-        //Test for each thread if they are running
+        //Assering that the threads are alive
         for (Thread scraperThread : ScraperHandler.getScraperList()) {
             assertEquals(true, scraperThread.isAlive());
         }
         System.out.println("Test 3 has been completed");
     }
 
-    @Before
+    @BeforeAll
     static void initAll() {
         try {
             //Create a builder for the standard service registry
@@ -110,7 +116,8 @@ public class AppTest {
                 sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
             } catch (Exception e) {
                 /* The registry would be destroyed by the SessionFactory,
-                        but we had trouble building the SessionFactory, so destroy it manually */
+                    but we had trouble building the SessionFactory, so destroy it manually 
+                */
                 System.err.println("Session Factory build failed.");
                 StandardServiceRegistryBuilder.destroy(registry);
             }
