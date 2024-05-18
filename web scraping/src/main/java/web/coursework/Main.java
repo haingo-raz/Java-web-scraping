@@ -8,7 +8,10 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
  */
 public class Main {
     public static void main(String[] args) {
+        // Instruct Spring to create and wire beans using annotations
         ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+
+        // Get the scraper handler bean and start the threads
         ScraperHandler scraperHandler = (ScraperHandler) context.getBean("scraperHandler");
         scraperHandler.startThreads();
     }

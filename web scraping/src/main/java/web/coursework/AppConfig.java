@@ -9,8 +9,10 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.springframework.context.annotation.*;
 
 /**
- * Spring config
+ * Spring config with Java annotation
  */
+
+// Mark that this class as a configuration class
 @Configuration
 public class AppConfig {
 
@@ -21,8 +23,10 @@ public class AppConfig {
      * @return scraperHandler
      */
 
+    // Public method that return an instance of a class.
     @Bean
     public ScraperHandler scraperHandler(){
+        //Create a new instance of ScraperHandler
         ScraperHandler scraperHandler = new ScraperHandler();
 
         List<Thread> scraperList = new ArrayList();
@@ -31,6 +35,7 @@ public class AppConfig {
         scraperList.add(scraper3());
         scraperList.add(scraper4());
         scraperList.add(scraper5());
+        // Dependency injection
         ScraperHandler.setScraperList(scraperList);
 
         //return handler object
