@@ -117,10 +117,11 @@ public class AppConfig {
                 //Load configuration file
                 standardServiceRegistryBuilder.configure("hibernate.cfg.xml");
 
-                //Create registry
+                //Create the registry which loads all the mappings between the database tables and the classes
                 StandardServiceRegistry registry = standardServiceRegistryBuilder.build();
 
                 try{
+                    // Create the session factory
                     sessionFactory = new MetadataSources(registry)
                             .buildMetadata()
                             .buildSessionFactory();

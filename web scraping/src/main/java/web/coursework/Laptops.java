@@ -21,7 +21,6 @@ public class Laptops {
     public String getLaptopDescription() { return laptopDescription;}
     public String getLaptopImgUrl () {return laptopImgUrl;}
 
-
     //Setters
     public void setLaptopId(int laptopId) { this.laptopId = laptopId;}
     public void setLaptopBrand(String laptopBrand) { this.laptopBrand = laptopBrand;}

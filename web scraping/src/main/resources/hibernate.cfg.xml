@@ -4,11 +4,13 @@
     <session-factory>
         <!-- Database connection properties - Driver, URL, user, password -->
         <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <!-- URL of the SQL database-->
         <property name="hibernate.connection.url">jdbc:mysql://localhost/cw1?serverTimezone=UTC</property>
+        <!-- Username and password of the SQL database-->
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password"/>
 
-        <!-- Connection Pool Size -->
+        <!-- Connection Pool Size; number of connections available -->
         <property name="hibernate.connection.pool_size">15</property>
 
         <!-- org.hibernate.HibernateException: No CurrentSessionContext configured! -->

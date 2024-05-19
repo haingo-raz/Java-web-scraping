@@ -15,9 +15,7 @@ public class Comparison {
     }
 
     //getters
-    public int getComparisonId() {
-        return comparisonId;
-    }
+    public int getComparisonId() { return comparisonId; }
     public int getLaptopId() { return laptopId; }
     public String getPrice() { return price;}
     public String getSourceUrl() { return sourceUrl;}
@@ -29,5 +27,4 @@ public class Comparison {
     public void setPrice(String price) { this.price = price;}
     public void setSourceUrl(String sourceUrl) { this.sourceUrl = sourceUrl;}
     public void setLogoUrl(String logoUrl) { this.logoUrl = logoUrl;}
-
 }
